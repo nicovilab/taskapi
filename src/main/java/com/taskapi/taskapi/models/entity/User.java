@@ -1,6 +1,6 @@
-package com.taskapi.taskapi.models.entities;
+package com.taskapi.taskapi.models.entity;
 
-import com.taskapi.taskapi.models.entities.enumeration.Role;
+import com.taskapi.taskapi.models.entity.enumeration.Role;
 import jakarta.persistence.*;
 import lombok.*;
 

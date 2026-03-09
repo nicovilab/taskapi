@@ -1,8 +1,8 @@
-package com.taskapi.taskapi.models.entities;
+package com.taskapi.taskapi.models.entity;
 
 
-import com.taskapi.taskapi.models.entities.enumeration.TaskPriority;
-import com.taskapi.taskapi.models.entities.enumeration.TaskStatus;
+import com.taskapi.taskapi.models.entity.enumeration.TaskPriority;
+import com.taskapi.taskapi.models.entity.enumeration.TaskStatus;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,4 +1,4 @@
-package com.taskapi.taskapi.models.entities;
+package com.taskapi.taskapi.models.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

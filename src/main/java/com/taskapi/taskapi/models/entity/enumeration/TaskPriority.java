@@ -1,4 +1,4 @@
-package com.taskapi.taskapi.models.entities.enumeration;
+package com.taskapi.taskapi.models.entity.enumeration;
 
 public enum TaskPriority {
     LOW,
