@@ -34,7 +34,7 @@ public class Project {
     @Builder.Default
     private List<Task> tasks = new ArrayList<>();
 
-    @Column(name = "created_ad", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at", nullable = false)
