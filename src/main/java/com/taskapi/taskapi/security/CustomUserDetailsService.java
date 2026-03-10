@@ -1,4 +1,4 @@
-package com.taskapi.taskapi.security.jwt;
+package com.taskapi.taskapi.security;
 
 import com.taskapi.taskapi.entity.User;
 import com.taskapi.taskapi.repository.UserRepository;
