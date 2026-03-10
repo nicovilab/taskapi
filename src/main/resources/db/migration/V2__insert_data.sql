@@ -1,6 +1,6 @@
 INSERT INTO users (username, email, password) VALUES
-('nico', 'nico@mail.com', '$2a$10$DowJ2HXpN3JOFKs2wbyMfezCOBKS7MwuFLEF/c09GI14F9Rh3fQXG'),
-('admin', 'admin@mail.com', '$2a$10$DowJ2HXpN3JOFKs2wbyMfezCOBKS7MwuFLEF/c09GI14F9Rh3fQXG');
+('nico', 'nico@mail.com', '$2a$12$fXtMnxBlh1e87G9qvbtp/.8xe67k6ZuVj5KVkAVBir5rCkbrlb4tm'),
+('admin', 'admin@mail.com', '$2a$12$fXtMnxBlh1e87G9qvbtp/.8xe67k6ZuVj5KVkAVBir5rCkbrlb4tm');
 
 INSERT INTO user_roles (user_id, role) VALUES
 (1, 'ROLE_USER'),
