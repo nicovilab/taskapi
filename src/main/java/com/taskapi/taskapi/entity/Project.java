@@ -1,4 +1,4 @@
-package com.taskapi.taskapi.models.entity;
+package com.taskapi.taskapi.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -23,6 +23,7 @@ public class Project {
     @Column(nullable = false)
     private String name;
 
+    @Column(length = 500)
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)

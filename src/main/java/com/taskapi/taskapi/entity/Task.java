@@ -1,8 +1,8 @@
-package com.taskapi.taskapi.models.entity;
+package com.taskapi.taskapi.entity;
 
 
-import com.taskapi.taskapi.models.entity.enumeration.TaskPriority;
-import com.taskapi.taskapi.models.entity.enumeration.TaskStatus;
+import com.taskapi.taskapi.entity.enumeration.TaskPriority;
+import com.taskapi.taskapi.entity.enumeration.TaskStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,17 +22,18 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 150)
     private String title;
 
+    @Column(length = 1000)
     private String description;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     private TaskStatus status;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, length = 10)
     private TaskPriority priority;
 
     @Column(name = "due_date")

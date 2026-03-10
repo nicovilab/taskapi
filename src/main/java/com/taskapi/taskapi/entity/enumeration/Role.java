@@ -1,4 +1,4 @@
-package com.taskapi.taskapi.models.entity.enumeration;
+package com.taskapi.taskapi.entity.enumeration;
 
 public enum Role {
     ROLE_USER,

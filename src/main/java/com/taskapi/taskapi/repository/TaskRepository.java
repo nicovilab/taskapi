@@ -1,8 +1,8 @@
-package com.taskapi.taskapi.models.repository;
+package com.taskapi.taskapi.repository;
 
-import com.taskapi.taskapi.models.entity.Task;
-import com.taskapi.taskapi.models.entity.enumeration.TaskPriority;
-import com.taskapi.taskapi.models.entity.enumeration.TaskStatus;
+import com.taskapi.taskapi.entity.Task;
+import com.taskapi.taskapi.entity.enumeration.TaskPriority;
+import com.taskapi.taskapi.entity.enumeration.TaskStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
