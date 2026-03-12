@@ -30,6 +30,7 @@ public class JwtTokenProvider {
 
         List<String> roles = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
+                .filter(auth -> auth.startsWith("ROLE_"))
                 .toList();
 
         Date now = new Date();

@@ -42,6 +42,7 @@ public class AuthService {
                 .roles(Set.of(Role.ROLE_USER))
                 .build();
 
+
         userRepository.save(user);
 
         return buildAuthResponse(request.getUsername(), request.getPassword());
@@ -60,6 +61,7 @@ public class AuthService {
 
         Set<String> roles = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
+                .filter(auth -> auth.startsWith("ROLE_"))
                 .collect(Collectors.toSet());
 
         return AuthResponse.builder()
