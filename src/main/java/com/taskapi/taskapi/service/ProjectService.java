@@ -17,9 +17,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProjectService {
 
-    private ProjectRepository projectRepository;
-    private UserRepository userRepository;
-    private ProjectMapper projectMapper;
+    private final ProjectRepository projectRepository;
+    private final UserRepository userRepository;
+    private final ProjectMapper projectMapper;
 
     public List<ProjectResponse> findAllByUser(String username) {
         User user = findUser(username);
