@@ -5,6 +5,7 @@ import com.taskapi.taskapi.dto.auth.LoginRequest;
 import com.taskapi.taskapi.dto.auth.RegisterRequest;
 import com.taskapi.taskapi.entity.User;
 import com.taskapi.taskapi.entity.enumeration.Role;
+import com.taskapi.taskapi.exception.DuplicateResourceException;
 import com.taskapi.taskapi.repository.UserRepository;
 import com.taskapi.taskapi.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
@@ -29,10 +30,10 @@ public class AuthService {
 
     public AuthResponse register(RegisterRequest request){
         if(userRepository.existsByUsername(request.getUsername())){
-            throw new IllegalArgumentException("El nombre de usuario ya está en uso");
+            throw new DuplicateResourceException("El nombre de usuario ya está en uso");
         }
         if (userRepository.existsByEmail(request.getEmail())) {
-            throw new IllegalArgumentException("El email ya está en uso");
+            throw new DuplicateResourceException("El email ya está en uso");
         }
 
         User user = User.builder()

@@ -8,6 +8,7 @@ import com.taskapi.taskapi.entity.Task;
 import com.taskapi.taskapi.entity.User;
 import com.taskapi.taskapi.entity.enumeration.TaskPriority;
 import com.taskapi.taskapi.entity.enumeration.TaskStatus;
+import com.taskapi.taskapi.exception.ResourceNotFoundException;
 import com.taskapi.taskapi.mapper.TaskMapper;
 import com.taskapi.taskapi.repository.ProjectRepository;
 import com.taskapi.taskapi.repository.TaskRepository;
@@ -70,10 +71,10 @@ public class TaskService {
 
     private Project findProjectByIdAndUser(Long id, String username){
         User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado " + username));
-        return projectRepository.findByIdAndUserId(id, user.getId()).orElseThrow(() -> new RuntimeException("Proyecto con id " + id + " no encontrado"));
+        return projectRepository.findByIdAndUserId(id, user.getId()).orElseThrow(() -> new ResourceNotFoundException("Proyecto con id " + id + " no encontrado"));
     }
 
     private Task findTask(Long id, Long projectId){
-        return taskRepository.findByIdAndProjectId(id, projectId).orElseThrow(() -> new RuntimeException("Tarea con id " + id + " no encontrada"));
+        return taskRepository.findByIdAndProjectId(id, projectId).orElseThrow(() -> new ResourceNotFoundException("Tarea con id " + id + " no encontrada"));
     }
 }

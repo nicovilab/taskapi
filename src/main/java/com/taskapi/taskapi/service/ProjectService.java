@@ -4,6 +4,7 @@ import com.taskapi.taskapi.dto.project.ProjectRequest;
 import com.taskapi.taskapi.dto.project.ProjectResponse;
 import com.taskapi.taskapi.entity.Project;
 import com.taskapi.taskapi.entity.User;
+import com.taskapi.taskapi.exception.ResourceNotFoundException;
 import com.taskapi.taskapi.mapper.ProjectMapper;
 import com.taskapi.taskapi.repository.ProjectRepository;
 import com.taskapi.taskapi.repository.UserRepository;
@@ -63,6 +64,6 @@ public class ProjectService {
     private Project findProjectByIdAndUser(Long id, String username) {
         User user = findUser(username);
         return projectRepository.findByIdAndUserId(id, user.getId())
-                .orElseThrow(() -> new RuntimeException("Proyecto con id " + id + " no encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("Proyecto con id " + id + " no encontrado"));
     }
 }
