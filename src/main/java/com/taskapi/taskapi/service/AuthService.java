@@ -30,10 +30,10 @@ public class AuthService {
 
     public AuthResponse register(RegisterRequest request){
         if(userRepository.existsByUsername(request.getUsername())){
-            throw new DuplicateResourceException("El nombre de usuario ya está en uso");
+            throw new DuplicateResourceException("Username already used");
         }
         if (userRepository.existsByEmail(request.getEmail())) {
-            throw new DuplicateResourceException("El email ya está en uso");
+            throw new DuplicateResourceException("Email already used");
         }
 
         User user = User.builder()

@@ -13,10 +13,10 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ProjectRequest {
 
-    @NotBlank(message = "El nombre del proyecto es obligatorio")
-    @Size(max = 100, message = "El nombre no puede superar los 100 caracteres")
+    @NotBlank(message = "Project name is required")
+    @Size(max = 100, message = "Name cant exceed 100 character")
     private String name;
 
-    @Size(max = 500, message = "La descripcino no puede superar los 500 caracteres")
+    @Size(max = 500, message = "Description cant exceed 500 character")
     private String description;
 }

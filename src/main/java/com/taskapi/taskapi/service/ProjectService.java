@@ -58,12 +58,12 @@ public class ProjectService {
     }
 
     private User findUser(String username) {
-        return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado " + username));
+        return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found " + username));
     }
 
     private Project findProjectByIdAndUser(Long id, String username) {
         User user = findUser(username);
         return projectRepository.findByIdAndUserId(id, user.getId())
-                .orElseThrow(() -> new ResourceNotFoundException("Proyecto con id " + id + " no encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("Project with id " + id + " not found"));
     }
 }

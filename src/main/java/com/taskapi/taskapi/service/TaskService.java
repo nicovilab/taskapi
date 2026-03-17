@@ -70,11 +70,11 @@ public class TaskService {
     }
 
     private Project findProjectByIdAndUser(Long id, String username){
-        User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado " + username));
-        return projectRepository.findByIdAndUserId(id, user.getId()).orElseThrow(() -> new ResourceNotFoundException("Proyecto con id " + id + " no encontrado"));
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found " + username));
+        return projectRepository.findByIdAndUserId(id, user.getId()).orElseThrow(() -> new ResourceNotFoundException("Project with id " + id + " no encontrado"));
     }
 
     private Task findTask(Long id, Long projectId){
-        return taskRepository.findByIdAndProjectId(id, projectId).orElseThrow(() -> new ResourceNotFoundException("Tarea con id " + id + " no encontrada"));
+        return taskRepository.findByIdAndProjectId(id, projectId).orElseThrow(() -> new ResourceNotFoundException("Task with id " + id + " no encontrada"));
     }
 }

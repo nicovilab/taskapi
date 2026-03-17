@@ -13,7 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class StatusUpdateRequest {
 
-    @NotNull(message = "El estado es obligatorio")
+    @NotNull(message = "Status is requried")
     private TaskStatus status;
 
 }

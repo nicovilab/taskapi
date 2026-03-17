@@ -18,16 +18,16 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class TaskRequest {
 
-    @NotBlank(message = "El titulo de la tarea es obligatorio")
-    @Size(max = 150, message = "El titulo no puede superar los 150 caracteres")
+    @NotBlank(message = "Task title is required")
+    @Size(max = 150, message = "Title cant exceed 150 character")
     private String title;
 
-    @Size(max = 1000, message = "La descripcion no puede superar los 1000 caraceteres")
+    @Size(max = 1000, message = "Description cant exceed 1000 character")
     private String description;
 
     private TaskStatus status;
     private TaskPriority priority;
 
-    @FutureOrPresent(message = "La fecha límite debe ser hoy o una fecha futura")
+    @FutureOrPresent(message = "The deadline must be today or a future date")
     private LocalDate dueDate;
 }
