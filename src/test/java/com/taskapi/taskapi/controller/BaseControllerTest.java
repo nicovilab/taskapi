@@ -1,6 +1,6 @@
 package com.taskapi.taskapi.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.taskapi.taskapi.dto.auth.RegisterRequest;
 import com.taskapi.taskapi.repository.ProjectRepository;
 import com.taskapi.taskapi.repository.TaskRepository;
@@ -12,6 +12,7 @@ import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
+import tools.jackson.databind.ObjectMapper;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
