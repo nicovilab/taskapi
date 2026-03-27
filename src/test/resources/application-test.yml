@@ -14,5 +14,5 @@ spring:
     enabled: false
 
 jwt:
-  secret: test-secret-key-que-tiene-al-menos-256-bits-para-hmac-sha256-ok
+  secret: ${JWT_SECRET:test-secret-32-chars-minimum-ok!}
   expiration: 3600000  # 1 ho
