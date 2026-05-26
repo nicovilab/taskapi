@@ -42,3 +42,7 @@ management:
   metrics:
     tags:
       application: taskapi
+
+rate-limit:
+  capacity: 10
+  refill-duration: 1
