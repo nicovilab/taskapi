@@ -34,7 +34,7 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .exceptionHandling(ex -> ex                          // ← añadir esto
+                .exceptionHandling(ex -> ex
                         .authenticationEntryPoint(
                                 (request, response, authException) ->
                                         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized")

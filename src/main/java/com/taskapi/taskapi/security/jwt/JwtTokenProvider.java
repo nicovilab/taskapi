@@ -71,4 +71,8 @@ public class JwtTokenProvider {
                 .parseSignedClaims(token)
                 .getPayload();
     }
+
+    public long getExpiration(String token){
+        return getClaims(token).getExpiration().getTime() - System.currentTimeMillis();
+    }
 }

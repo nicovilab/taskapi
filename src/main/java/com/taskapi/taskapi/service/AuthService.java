@@ -27,6 +27,7 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider jwtTokenProvider;
+    private final TokenBlacklistService tokenBlacklistService;
 
     public AuthResponse register(RegisterRequest request){
         if(userRepository.existsByUsername(request.getUsername())){
@@ -70,5 +71,10 @@ public class AuthService {
                 .username(authentication.getName())
                 .roles(roles)
                 .build();
+    }
+
+    public void logout(String token){
+        long expiration = jwtTokenProvider.getExpiration(token);
+        tokenBlacklistService.blacklist(token, expiration);
     }
 }

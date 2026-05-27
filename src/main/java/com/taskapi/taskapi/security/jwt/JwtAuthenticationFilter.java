@@ -1,5 +1,6 @@
 package com.taskapi.taskapi.security.jwt;
 
+import com.taskapi.taskapi.service.TokenBlacklistService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,12 +22,13 @@ import java.util.List;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtTokenProvider jwtTokenProvider;
+    private final TokenBlacklistService tokenBlacklistService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String token = extractToken(request);
 
-        if(StringUtils.hasText(token) && jwtTokenProvider.isValid(token)){
+        if(StringUtils.hasText(token) && jwtTokenProvider.isValid(token) && !tokenBlacklistService.isBlacklisted(token)){
             String username = jwtTokenProvider.getUsername(token);
             List<SimpleGrantedAuthority> authorities = jwtTokenProvider.getRoles(token).stream()
                     .map(SimpleGrantedAuthority::new)
