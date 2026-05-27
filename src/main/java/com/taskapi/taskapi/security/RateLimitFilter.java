@@ -65,4 +65,8 @@ public class RateLimitFilter extends OncePerRequestFilter {
                     """);
         }
     }
+
+    public void clearBuckets(){
+        buckets.invalidateAll();
+    }
 }
