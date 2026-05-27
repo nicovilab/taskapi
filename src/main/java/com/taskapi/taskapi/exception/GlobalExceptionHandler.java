@@ -1,6 +1,7 @@
 package com.taskapi.taskapi.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.coyote.Response;
 import org.flywaydb.core.api.callback.Error;
 import org.springframework.http.HttpStatus;
@@ -11,10 +12,12 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.nio.file.AccessDeniedException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -46,8 +49,14 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.BAD_REQUEST, "Validation error", request, fieldErrors);
     }
 
+    @ExceptionHandler(AccessDeniedException.class) //403
+    public ResponseEntity<ErrorResponse> handleAccessDenied(AccessDeniedException ex, HttpServletRequest request){
+        return buildResponse(HttpStatus.FORBIDDEN, "Access denied", request, null);
+    }
+
     @ExceptionHandler(Exception.class) //500
     public ResponseEntity<ErrorResponse> handleGeneral(Exception ex, HttpServletRequest request){
+        log.error("Unexpected error on {}: {}", request.getRequestURI(), ex.getMessage(), ex);
         return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error", request, null);
     }
 
