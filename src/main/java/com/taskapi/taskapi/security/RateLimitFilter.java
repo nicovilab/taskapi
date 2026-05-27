@@ -1,5 +1,7 @@
 package com.taskapi.taskapi.security;
 
+import com.github.benmanes.caffeine.cache.Cache;
+import com.github.benmanes.caffeine.cache.Caffeine;
 import com.taskapi.taskapi.config.RateLimitProperties;
 import io.github.bucket4j.Bandwidth;
 import io.github.bucket4j.Bucket;
@@ -15,8 +17,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.time.Duration;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 
 @Component
 @Priority(1)
@@ -24,7 +25,9 @@ import java.util.concurrent.ConcurrentHashMap;
 public class RateLimitFilter extends OncePerRequestFilter {
 
     private final RateLimitProperties properties;
-    private final Map<String, Bucket> buckets = new ConcurrentHashMap<>();
+    private final Cache<String, Bucket> buckets = Caffeine.newBuilder()
+            .expireAfterAccess(1, TimeUnit.HOURS)
+            .build();
 
     private Bucket createBucket() {
         return Bucket.builder()
@@ -41,7 +44,12 @@ public class RateLimitFilter extends OncePerRequestFilter {
         String key = request.getUserPrincipal() != null ? request.getUserPrincipal().getName() : request.getRemoteAddr();
 
 
-        Bucket bucket = buckets.computeIfAbsent(key, k -> createBucket());
+        Bucket bucket = buckets.get(key, k -> createBucket());
+
+        if(bucket == null){
+            filterChain.doFilter(request, response);
+            return;
+        }
 
         if (bucket.tryConsume(1)){
             filterChain.doFilter(request, response);
